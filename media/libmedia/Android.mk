@@ -26,6 +26,7 @@ ifeq ($(TARGET_BOARD_PLATFORM),mt6582)
 LOCAL_CFLAGS += -MTK_MT6582
 endif
 
+
 LOCAL_SRC_FILES:= \
     AudioTrack.cpp \
     AudioTrackShared.cpp \
@@ -127,6 +128,15 @@ LOCAL_C_INCLUDES := \
     $(TOP)/external/icu/icu4c/source/i18n \
     $(call include-path-for, audio-effects) \
     $(call include-path-for, audio-utils)
+
+
+ifeq ($(MTK_HARDWARE),true)
+LOCAL_SRC_FILES += \
+    mtkaudio_stubs.cpp
+
+# StrongPointer.h
+LOCAL_C_INCLUDES += $(TOP)/frameworks/rs/server
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 

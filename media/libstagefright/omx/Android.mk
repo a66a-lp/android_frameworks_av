@@ -37,6 +37,14 @@ ifeq ($(DTS_CODEC_M_), true)
   LOCAL_CFLAGS += -DDTS_CODEC_M_
 endif
 
+ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
+ifeq ($(BOARD_USES_LEGACY_MTK_AV_BLOB),true)
+ifeq ($(TARGET_ARCH),arm)
+LOCAL_CFLAGS += -DUSE_LEGACY_MTK_AV_BLOB
+endif
+endif
+endif
+
 LOCAL_MODULE:= libstagefright_omx
 
 include $(BUILD_SHARED_LIBRARY)
